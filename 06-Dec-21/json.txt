@@ -1,0 +1,388 @@
+Introduction to JSON :
+JSON : Javascript Object Notation
+It is not type of technology, programming Language, Tools It just a standard data Convension.
+
+Tags : Data ---> HTML
+Tags : DAta --->XML
+Data : Represent ---> Key and value pairs ---> such that it is highly transportable over a network then it is called as, JSON.
+
+1. object : {}
+Eg: {"name":"value","class":"12th","marks":50}
+		key | value | key  |  value | key | value
+		
+2. Array : [Element1, Element2, Element3.....]
+3. Array of Object
+	[
+		{"name":"himanshi","class":"12th","marks":50}
+		{"name":"himanshi","class":"12th","marks":50}
+		{"name":"himanshi","class":"12th","marks":50}
+		{"name":"himanshi","class":"12th","marks":50}
+		{"name":"himanshi","class":"12th","marks":50}
+	],
+	[
+		{"name":"himanshi","class":"12th","marks":50}
+		{"name":"himanshi","class":"12th","marks":50}
+		{"name":"himanshi","class":"12th","marks":50}
+		{"name":"himanshi","class":"12th","marks":50}
+		{"name":"himanshi","class":"12th","marks":50}
+	],
+	[
+		{"name":"himanshi","class":"12th","marks":50}
+		{"name":"himanshi","class":"12th","marks":50}
+		{"name":"himanshi","class":"12th","marks":50}
+		{"name":"himanshi","class":"12th","marks":50}
+		{"name":"himanshi","class":"12th","marks":50}
+	],
+	
+	This format of data is called as, Document Data Format.
+
+How to connect Mongodb :
+**************************
+1. Open CMD
+2. mongod : server
+3. intial start : error cannot write data into default pah : c:/data/db/
+4. goto c: mkdir cd data mkdir db
+
+How to Run mongoclient :
+***************************
+1. make sure your mongod server in running
+2. open another instance of cmd
+3. type mongo
+mongo shell>
+>
+
+Important setting about mongo :
+********************************
+By default port : 27017
+dbpath : c:/data/db/
+architecure : 64-bit
+host : DESKTOP-5FOH6GN <PC-NAME>
+
+How to create new Database :
+*****************************
+1. <use> command : database created then select or if not it will create it.
+2. How to get current db : db command
+3. by default db : test
+
+By default Object or Internal DB of mongodb :
+***********************************************
+1. show databases
+	
+	1. admin   0.000GB Round figure GB.
+	2. config  0.000GB
+	3. local   0.000GB
+	4. test    0.000GB
+
+Note :: Since the database size variation is in GB, we will never be able to know any major changes in database size	
+
+How to see list of collection in current Database :
+*****************************************************
+1. use <db-name>
+2. show collections
+	collection-1
+	collection-2
+	collection-3
+	...
+	collection n
+or
+3. db.getCollectionNames()
+	["collection-1","collection-2","collection-3","collection-N"]
+	
+show collections : Query or statement
+db.getCollectionNames() : procedure
+
+Mongo Supports two types of statements :
+******************************************
+1. Query Statements : lower case without semicolon
+2. Procedure Statements : Functions calls  : camelCase without semicolon.
+
+How to see the list of Records in a Collection : (select * from <table-name>)
+********************************************************************************
+db.<db-collection-name>.find() : using this we can find the all records stored in a collection
+
+How to create new collection : (create table)
+************************************************
+db.createCollection("<collectionName>")
+
+How to insert a document-object or a objects :
+************************************************
+Note :: Here, one object is equivalent to row, or Records
+
+Types of Insert :
+*******************
+1. Single Insert : insert as object {}
+2. Bulk Insert : insert as Array of object [{},{},{}....]
+
+db.<collection-name>.insert()
+Ex:- db.student.insert([ {roll:1002,name:"vanshi",marks:80}, {roll:1003,name:"saurav",marks:85}, {roll:1004,name:"Arunita",marks:99}, {roll:1005,name:"Pawakdeep",marks:99}, ])
+
+How to find all inserted Records :
+************************************
+db.student.find().pretty()
+       { "_id" : ObjectId("61ee37d9ef4324de9d5427b5"),
+        "id" : 1001,
+        "name" : "himanshi",
+        "class" : "diploma" 
+		}
+db.student.find()
+{"_id" : ObjectId("61ee37d9ef4324de9d5427b5"),"id" : 1001,"name" : "himanshi","class" : "diploma"}
+
+system 32 bit : 12 hexadecimal Object Id.
+system 64 bit : 24 hexadecimal Object Id.
+
+server ---> 32 bit ---> Mysql --> PK --> Integer 11	
+server ---> 64 bit ---> Mysql --> PK --> Integer 11
+server ---> 64 bit ---> Mysql --> PK --> BigInt 20	
+
+"__id" : primary Key : ObjectID
+
+Object id : System Architecture and and it's minimum Arcgitecture 32 Bit 
+64 bit ---> 24 bit
+32 bit ---> 12 bit
+
+4 bytes : timestamp : hexadecimal format 01.01.1970 am to 07.01.2022 in second timestamp
+3 bytes : Mac-address Id
+2 byte : process_Id (pid)
+3 byte : Random Numbers 
+
+61ee37d9ef4324de9d5427b5 => some sort Hashing Algorithms. In Application, we can store this "__id" store in session for updating and deleting the data.
+
+How to see after bulk Insert : db.student.find()
+***************************************************
+> db.student.find()
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d19"), "roll" : 1002, "name" : "vanshi", "marks" : 80 }
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d1a"), "roll" : 1003, "name" : "saurav", "marks" : 85 }
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d1b"), "roll" : 1004, "name" : "Arunita", "marks" : 99 }
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d1c"), "roll" : 1005, "name" : "Pawakdeep", "marks" : 99 }
+>
+
+> db.student.find().pretty()
+{
+        "_id" : ObjectId("61ee3d6d9650285a2f1c2d19"),
+        "roll" : 1002,
+        "name" : "vanshi",
+        "marks" : 80
+}
+{
+        "_id" : ObjectId("61ee3d6d9650285a2f1c2d1a"),
+        "roll" : 1003,
+        "name" : "saurav",
+        "marks" : 85
+}
+
+How to fetch records on the basis os some condition or predicates
+*******************************************************************
+syntax : select * from collection-name where key:value
+Eg :
+> db.student.find({name:"Arunita"})
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d1b"), "roll" : 1004, "name" : "Arunita", "marks" : 99 }
+>
+'!=' : $ne
+'>' : $gt
+'<' : $lt
+'>=' : $gte
+'<=' : $lte
+
+> db.student.find({marks:{$ne:80}})
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d1a"), "roll" : 1003, "name" : "saurav", "marks" : 85 }
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d1b"), "roll" : 1004, "name" : "Arunita", "marks" : 99 }
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d1c"), "roll" : 1005, "name" : "Pawakdeep", "marks" : 99 }
+> db.student.find({marks:{$lte:80}})
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d19"), "roll" : 1002, "name" : "vanshi", "marks" : 80 }
+> db.student.find({marks:{$gte:80}})
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d19"), "roll" : 1002, "name" : "vanshi", "marks" : 80 }
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d1a"), "roll" : 1003, "name" : "saurav", "marks" : 85 }
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d1b"), "roll" : 1004, "name" : "Arunita", "marks" : 99 }
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d1c"), "roll" : 1005, "name" : "Pawakdeep", "marks" : 99 }
+> db.student.find({marks:{$gt:80}})
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d1a"), "roll" : 1003, "name" : "saurav", "marks" : 85 }
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d1b"), "roll" : 1004, "name" : "Arunita", "marks" : 99 }
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d1c"), "roll" : 1005, "name" : "Pawakdeep", "marks" : 99 }
+> db.student.find({marks:{$lt:80}})
+
+> db.student.find({marks:{$lt:98}})
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d19"), "roll" : 1002, "name" : "vanshi", "marks" : 80 }
+{ "_id" : ObjectId("61ee3d6d9650285a2f1c2d1a"), "roll" : 1003, "name" : "saurav", "marks" : 85 }
+>
+
+How to fetch records particular columns :
+*********************************************
+syntax : in order to use collection name
+db.<collection-name>.find(conditions),{<column-names>:<0 or 1>}
+
+Example :
+> db.student.find({},{name:1})
+{ "_id" : ObjectId("61ee2d276a2c000646ce0ce1"), "name" : "himanshi" }
+
+
+Using And condition  :
+*****************************
+> db.student.find({$and:[{name:"himanshi"},{roll:1001}]})
+{ "_id" : ObjectId("61ee2d276a2c000646ce0ce1"), "roll" : 1001, "name" : "himanshi", "marks" : 55 }
+>
+
+How to combine multiple condition with Mongodb using or:
+***********************************************************
+
+Example :
+
+> db.student.find({$or:[{roll:1002},{marks:55}]}).pretty()
+{
+        "_id" : ObjectId("61ee2d276a2c000646ce0ce1"),
+        "roll" : 1001,
+        "name" : "himanshi",
+        "marks" : 55
+}
+{
+        "_id" : ObjectId("61ef6ac4074a33d291bde5c9"),
+        "roll" : 1002,
+        "name" : "saurav",
+        "marks" : 86
+}
+{
+        "_id" : ObjectId("61ef6c73074a33d291bde5ce"),
+        "roll" : 1006,
+        "name" : "priya",
+        "marks" : 55
+}
+
+> db.student.find({$or:[{roll:1002},{marks:{$lt:55}}]}).pretty()
+{
+        "_id" : ObjectId("61ef6ac4074a33d291bde5c9"),
+        "roll" : 1002,
+        "name" : "saurav",
+        "marks" : 86
+}
+{
+        "_id" : ObjectId("61ef6c73074a33d291bde5cd"),
+        "roll" : 1006,
+        "name" : "mohan",
+        "marks" : 16
+}
+>
+
+How to update records in mongodb
+***********************************
+in mongodb update work on the following manner => 
+no. of matching records = 1, update will work
+no. of matching records > 1, only the top most record will br updated
+
+so in order to, update multi- record  we need to specify the multi as true 
+
+syntax : 
+SQL : update table-name set column=value where $condition = ...
+
+db.collection.find({condition},{configuration})
+or
+we use $set:[{key:value},{key:value}......]
+
+db.collection.update({condition},{set:{key:value,key:value}},{multi:true|false})
+
+Example : db.student.update({roll:{$gte:1004}},{$set:{name:"Shyam"}},{multi:true})
+
+> db.student.update({roll:1001},{$set:{name:"vanshi",marks:95}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+>db.student.update({marks:{$lte:50}},{$set:{marks:95}},{multi:true})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+> db.student.remove({marks:{$gte:90}})
+WriteResult({ "nRemoved" : 2 })
+
+> db.student.remove({marks:{$gte:60}},true)
+WriteResult({ "nRemoved" : 1 })
+
+Upsert in mongodb :
+**********************
+upsert = update + insert
+if match => 1 update (found or pre-existing)
+if not match => 0 insert (No found)
+
+stntax :-
+db.student.update({condition},{key:value,key:value},{upsert:true})
+Example :-
+> db.student.update({roll:1009},{$set:{marks:77}},{upsert:true})
+WriteResult({
+        "nMatched" : 0,
+        "nUpserted" : 1,
+        "nModified" : 0,
+        "_id" : ObjectId("61ef7d62ad4c811001d6abde")
+})
+>
+
+Skipping the query :
+**********************
+limit (n) method : to limit the query
+db.student.limit(n)
+
+Skipping the Query :
+*********************
+when we run the limit Query Top records to n records data is fetched, when we run the skip Query top Records to n will skipped and remaining data will be Returned as a result.
+
+db.collection.find()  //All records
+db.collection.find.skip(n)
+
+Example :
+> db.student.find().skip(2)
+{ "_id" : ObjectId("61ef7927074a33d291bde5d6"), "roll" : 1004, "name" : "saurav", "marks" : 66 }
+{ "_id" : ObjectId("61ef7d62ad4c811001d6abde"), "roll" : 1009, "marks" : 77 }
+
+> db.student.find()
+{ "_id" : ObjectId("61ef7927074a33d291bde5d3"), "roll" : 1001, "name" : "maggie", "marks" : 16 }
+{ "_id" : ObjectId("61ef7927074a33d291bde5d4"), "roll" : 1002, "name" : "prachi", "marks" : 55 }
+{ "_id" : ObjectId("61ef7927074a33d291bde5d6"), "roll" : 1004, "name" : "saurav", "marks" : 66 }
+{ "_id" : ObjectId("61ef7d62ad4c811001d6abde"), "roll" : 1009, "marks" : 77 }
+>
+
+How to clear screen
+*********************
+cls
+
+How to order the data in mongodb :
+*************************************
+since mongodb stores the data in un-structured format, there is no logical arrangement or sequence.
+So, in-order to manage that, user is explicitly responsible to handle it.
+db.student.find().sort({key:1})
+db.student.find().sort({key:-1})
+Example :
+> db.student.find().sort({roll:-1})
+{ "_id" : ObjectId("61ef7d62ad4c811001d6abde"), "roll" : 1009, "marks" : 77 }
+{ "_id" : ObjectId("61ef7927074a33d291bde5d6"), "roll" : 1004, "name" : "saurav", "marks" : 66 }
+{ "_id" : ObjectId("61ef7927074a33d291bde5d4"), "roll" : 1002, "name" : "prachi", "marks" : 55 }
+{ "_id" : ObjectId("61ef7927074a33d291bde5d3"), "roll" : 1001, "name" : "maggie", "marks" : 16 }
+
+> db.student.find().sort({roll:1})
+{ "_id" : ObjectId("61ef7927074a33d291bde5d3"), "roll" : 1001, "name" : "maggie", "marks" : 16 }
+{ "_id" : ObjectId("61ef7927074a33d291bde5d4"), "roll" : 1002, "name" : "prachi", "marks" : 55 }
+{ "_id" : ObjectId("61ef7927074a33d291bde5d6"), "roll" : 1004, "name" : "saurav", "marks" : 66 }
+{ "_id" : ObjectId("61ef7d62ad4c811001d6abde"), "roll" : 1009, "marks" : 77 }
+>
+
+How to create the Indexs in mongodb :
+***************************************
+
+Indexes are used or created over the perticular column or key to extract the data oe performing the searching very fast
+
+In local db or for less number of records creating index will not effect the performance but definatly if you have cloud server where internet connection and large amount data like 1-Lakh record at time is the constraint.
+In the case you can use concept of Indexes
+
+Example :
+> db.student.createIndex({roll:1})
+{
+        "numIndexesBefore" : 1,
+        "numIndexesAfter" : 2,
+        "createdCollectionAutomatically" : false,
+        "ok" : 1
+}
+>
+
+How Index works :
+*******************
+They organise the group into different blocks of records called as pages internally in db catalogue and when ever we want to fetch the records instead of searching in from top to bottom Line by line.
+It will directly jump into that pages
+Index are similler to book Indexes :
+**************************************
+
+
+
+

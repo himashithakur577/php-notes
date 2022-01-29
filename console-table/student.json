@@ -1,0 +1,23 @@
+{
+	"collection":"student",
+	"author":"Himanshi Singh",
+	"date":"27-jan-2022",
+	"time":"10:02:00 AM",
+	"data":[
+		{
+			"roll":1001,
+			"name":"himanshi",
+			"marks":70
+		},
+		{
+			"roll":1002,
+			"name":"saurav",
+			"marks":70
+		},
+		{
+			"roll":1003,
+			"name":"vanshi",
+			"marks":60
+		}
+	]
+}

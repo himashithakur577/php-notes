@@ -1,0 +1,42 @@
+<?php 
+
+echo 'this is my terminal';
+echo PHP_EOL;
+//each 'my framework : version 1.x';
+echo PHP_EOL;
+
+
+$commands=[
+'--help' => 'this is help command',
+'--v' => '1.x',
+'--a' => 'for addition',
+'--s' => 'for subtraction',
+'--m' => 'for multiplication',
+'--d' => 'for devision',
+'--r' => 'for remainder',
+
+];
+
+foreach($commands as $key => $value){
+	printf("%s\t\t:\t\t%s\n",$key,$value);
+}
+$output='';
+        if(isset($argv[1])){
+			$command=$argv[1];
+            echo "\e[H\e[J";
+        switch($command){
+            case '--v':
+            $output='1.x';
+        break;
+        default:
+            $output='Invalid Command';
+        break;
+		}
+	}
+	echo $output;
+        		
+
+
+
+
+?>
